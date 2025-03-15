@@ -2,9 +2,9 @@ from torch.nn import Linear, Module
 import torch.nn.functional as F
 import torch
 
-class MLP(Module):
+class FC(Module):
     def __init__(self, infeats, fc_feats, units):
-        super(MLP, self).__init__()
+        super(FC, self).__init__()
         self.inlayer = Linear(infeats, fc_feats)
         self.fc = Linear(fc_feats, fc_feats)
         self.outlayer = Linear(fc_feats, units)
@@ -15,7 +15,7 @@ class MLP(Module):
         x = self.outlayer(x)
         return x
     
-model = MLP(768, 1024, 3)
+model = FC(768, 1024, 3)
 data = torch.rand(100, 768)
 one_hot_labels = F.one_hot(
     torch.tensor([i % 3 for i in range(100)]), num_classes=3,
