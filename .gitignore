@@ -1,0 +1,6 @@
+yolo/lables/*
+yolo/datasets/*
+node_modules/*
+__pycache__/*
+*.pt
+runs
