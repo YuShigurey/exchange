@@ -6,13 +6,10 @@ model = Sequential([
     layers.InputLayer(input_shape=(infeats,)),
     layers.Dense(units=fc_feats, activation='relu'),
     layers.Dense(units=fc_feats, activation='relu'),
-    layers.Dense(units=units)  # No activation here
+    layers.Dense(units=units, activation="softmax")
 ])
 
-# Use logits for categorical_crossentropy
-loss_fn = tf.keras.losses.CategoricalCrossentropy(from_logits=True)
-
-
+loss_fn = tf.keras.losses.CategoricalCrossentropy()
 
 data = tf.random.uniform((100, 768))
 labels = tf.one_hot(tf.range(100) % 3, depth=3)
